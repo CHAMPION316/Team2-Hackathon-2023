@@ -1,58 +1,65 @@
 
-import game, { SCALE } from './game';
-import * as warped from './warped';
+import { SCALE } from './game';
+import { tiles, backgroundTiles, entities } from './warped';
 
-// platforms
 addLevel([
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                 |                                    ',
-    '                                 |                                    ',
-    '                                 |                                    ',
-    ' <==================================================================> '
+    '                                 [ ]                                  ',
+    '                       ▄     ┬#+       ┬   ▄                          ',
+    '                       █     │#  [ ]   │   █                          ',
+    '                          ░  │▓     ▒  │▓                             ',
+    '                             │   [ ]   │                              ',
+    '                       █     │         │   █                          ',
+    '                             │         │                              ',
+    '                             │         │                              ',
+    '                       █     │         │   █                          ',
+    '                             │         │                              ',
+    '                             ┴         ┴                              ',
+    '                                                                      '
 ], {
     tileWidth: 16 * SCALE,
 	tileHeight: 16 * SCALE,
-    tiles: {
-        '<': () => [
-            sprite("platform-l"),
-            area(),
-            scale(SCALE),
-            body({ isStatic: true }),
-            tile({ isObstacle: true }),
-        ],
-        '=': () => [
-            sprite("platform-m"),
-            area(),
-            scale(SCALE),
-            body({ isStatic: true }),
-            tile({ isObstacle: true }),
-        ],
-        '>': () => [
-            sprite("platform-r"),
-            area(),
-            scale(SCALE),
-            body({ isStatic: true }),
-            tile({ isObstacle: true }),
-        ],
-        '|': () => [
-            sprite("pillar-lm"),
-            area(),
-            scale(SCALE),
-            body({ isStatic: true }),
-            tile({ isObstacle: true }),
-        ]
-    }
+    tiles: backgroundTiles
 });
+
+// Platforms/Ladders
+addLevel([
+    '                    <===========================>                     ',
+    '                                  ≡                                   ',
+    '                                  ≡                                   ',
+    '                                  ≡                                   ',
+    '                                  ≡                                   ',
+    '                                  ≡                                   ',
+    '                                  ¯                                   ',
+    '                              <=======>                               ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '______________________________________________________________________'
+], {
+    tileWidth: 16 * SCALE,
+	tileHeight: 16 * SCALE,
+    tiles
+});
+
+////////// Player/Enemies/Items
+const level = addLevel([
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '                               P                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      '
+], {
+    tileWidth: 16 * SCALE,
+	tileHeight: 16 * SCALE,
+    tiles: entities
+});
+
+
+export default level;
