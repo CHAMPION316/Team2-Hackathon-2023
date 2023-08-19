@@ -23,6 +23,27 @@ loadSpriteAtlas("/assets/tiles/warped.png", {
         x: 192, y: 64, width: 16, height: 16
     },
 
+    "wall-lt": {
+        x: 144, y: 16, width: 32, height: 16
+    },
+    "wall-lm": {
+        x: 144, y: 32, width: 32, height: 32,
+        sliceY: 2
+    },
+    "wall-lb": {
+        x: 144, y: 64, width: 32, height: 16
+    },
+    "wall-rt": {
+        x: 288, y: 16, width: 32, height: 16
+    },
+    "wall-rm": {
+        x: 288, y: 32, width: 32, height: 32,
+        sliceY: 2
+    },
+    "wall-rb": {
+        x: 288, y: 64, width: 32, height: 16
+    },
+
     ////////// Windows
     "window-o": {
         x: 224, y: 176, width: 48, height: 64
@@ -40,13 +61,26 @@ loadSpriteAtlas("/assets/tiles/warped.png", {
         x: 48, y: 32, width: 48, height: 48
     },
 
-    ////////// Aircon
+    ////////// Misc
     "aircon": {
         x: 176, y: 144, width: 32, height: 32
     },
 
     'dark': {
         x: 64, y: 16, width: 16, height: 16
+    },
+
+    "pipes-1": {
+        x: 160, y: 96, width: 48, height: 32,
+    },
+    "pipes-2-t": {
+        x: 64, y: 96, width: 16, height: 16
+    },
+    "pipes-2-m": {
+        x: 64, y: 112, width: 16, height: 16
+    },
+    "pipes-2-b": {
+        x: 64, y: 128, width: 16, height: 16
     },
 
     ////////// Ladder
@@ -97,6 +131,31 @@ export const backgroundTiles = {
         sprite("thin-wall-b"),
         scale(SCALE),
     ],
+    // Thick walls
+    '╔': () => [
+        sprite("wall-lt"),
+        scale(SCALE),
+    ],
+    '╠': () => [
+        sprite("wall-lm", { frame: ~~rand(0, 2) }),
+        scale(SCALE),
+    ],
+    '╚': () => [
+        sprite("wall-lb"),
+        scale(SCALE),
+    ],
+    '╗': () => [
+        sprite("wall-rt"),
+        scale(SCALE),
+    ],
+    '╣': () => [
+        sprite("wall-rm", { frame: ~~rand(0, 2) }),
+        scale(SCALE),
+    ],
+    '╝': () => [
+        sprite("wall-rb"),
+        scale(SCALE),
+    ],
     // Windows
     '░': () => [
         sprite("window-o"),
@@ -129,6 +188,11 @@ export const backgroundTiles = {
         sprite("dark"),
         scale(SCALE),
     ],
+    // Pipes
+    'p': () => [
+        sprite("pipes-1"),
+        scale(SCALE),
+    ],
 }
 
 export const entities = {
@@ -142,7 +206,7 @@ export const tiles = {
         scale(SCALE),
         area({
             scale:vec2(0.1,1),
-            offset:vec2(16*4,0)
+            offset:vec2(16*4,-10)
         }),
         tile({ isObstacle: false }),
         'ladder'
