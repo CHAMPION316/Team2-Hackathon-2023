@@ -1,7 +1,6 @@
 
 import game from './game';
 import createPlayer from './player';
-import level from './map';
 
 
 setGravity(640);
