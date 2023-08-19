@@ -83,6 +83,8 @@ loadSpriteAtlas("/assets/tiles/warped.png", {
         x: 64, y: 128, width: 16, height: 16
     },
 
+    
+
     ////////// Ladder
     "ladder": { 
         x: 32, y: 96, width: 16, height: 16 
@@ -191,6 +193,23 @@ export const backgroundTiles = {
     // Pipes
     'p': () => [
         sprite("pipes-1"),
+        scale(SCALE),
+    ],
+    'q': () => [
+        sprite("pipes-2-t"),
+        scale(SCALE),
+    ],
+    'a': () => [
+        sprite("pipes-2-m"),
+        scale(SCALE),
+    ],
+    'z': () => [
+        sprite("pipes-2-b"),
+        scale(SCALE),
+    ],
+    // Wires
+    'w': () => [
+        sprite(""),
         scale(SCALE),
     ],
 }
