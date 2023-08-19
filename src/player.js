@@ -56,14 +56,14 @@ loadSprite("player", "/assets/sprites/player.png", {
 
 export default function spawnPlayer(pos, hitPoints) {
     const SPEED = 120 * SCALE;
-    const JUMP_FORCE = 240 * (SCALE/2);
+    const JUMP_FORCE = 360 * SCALE;
 
     const player = game.add([
         sprite("player"),
         pos,
         anchor('center'),
         scale(SCALE),
-        area(),
+        area({scale:vec2(0.25, 1)}),
         body(),
         health(hitPoints),
         'player',

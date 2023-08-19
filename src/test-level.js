@@ -40,16 +40,16 @@ addLevel([
     '                                                                      ',
     '                                                                      ',
     '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
+    '                                 |                                    ',
+    '                                 |                                    ',
+    '                                 |                                    ',
+    '                                 |                                    ',
+    '                                 |                                    ',
+    '                                 |                                    ',
     ' <==================================================================> '
 ], {
-    tileWidth: 16,
-	tileHeight: 16,
+    tileWidth: 16 * SCALE,
+	tileHeight: 16 * SCALE,
     tiles: {
         '<': () => [
             sprite("platform-l"),
@@ -72,5 +72,12 @@ addLevel([
             body({ isStatic: true }),
             tile({ isObstacle: true }),
         ],
+        '|': () => [
+            sprite("pillar-lm"),
+            area(),
+            scale(SCALE),
+            body({ isStatic: true }),
+            tile({ isObstacle: true }),
+        ]
     }
 });
