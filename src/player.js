@@ -1,5 +1,5 @@
 
-import game, { SCALE } from './game';
+import { SCALE } from './game';
 
 
 loadSprite("player", "/assets/sprites/player.png", {
@@ -23,7 +23,7 @@ loadSprite("player", "/assets/sprites/player.png", {
         },
         "climb": {
             from: 24, to: 29,
-            speed: 10,
+            speed: 5,
             loop: true
         },
         "run": {
@@ -47,27 +47,36 @@ loadSprite("player", "/assets/sprites/player.png", {
         "falling": 12,
         "land": {
             from: 67, to: 68,
-            speed: 10,
+            speed: 8,
             loop: false
         }
 
     }
 });
 
-export default function spawnPlayer(pos, hitPoints) {
-    const SPEED = 120 * SCALE;
-    const JUMP_FORCE = 360 * SCALE;
+const SPEED = 120 * SCALE;
+const JUMP_FORCE = 320 * SCALE;
+const HIT_POINTS = 100;
 
-    const player = game.add([
+export function player() {
+    return [
         sprite("player"),
-        pos,
-        anchor('center'),
+        anchor('bot'),
         scale(SCALE),
-        area({scale:vec2(0.25, 1)}),
+        area({
+            scale:vec2(0.25, 0.75), 
+            // offset:vec2(0,66 * 0.15)
+        }),
         body(),
-        health(hitPoints),
+        health(HIT_POINTS),
         'player',
-    ]);
+    ];
+}
+
+export function getPlayer(level) {
+    const player = level.get("player")[0];
+    const dirKeys = ["w", "s", "a", "d"];
+    let onLadder = false;
 
     player.play('idle');
 
@@ -77,7 +86,15 @@ export default function spawnPlayer(pos, hitPoints) {
             player.jump(JUMP_FORCE)
             player.play("jump")
         }
-    })
+    });
+
+    onKeyDown('w', () => {
+        if (onLadder) {
+            player.move(0, -SPEED/2);
+            player.jump(20);
+            player.play("climb");
+        }
+    });
 
     onKeyDown('a', () => {
         player.move(-SPEED, 0);
@@ -95,7 +112,7 @@ export default function spawnPlayer(pos, hitPoints) {
         }
     });
 
-    ["a", "d"].forEach((key) => {
+    dirKeys.forEach((key) => {
         onKeyRelease(key, () => {
             if (player.isGrounded() && !isKeyDown("a") && !isKeyDown("d")) {
                 player.play("idle");
@@ -115,19 +132,39 @@ export default function spawnPlayer(pos, hitPoints) {
                 player.play("run");
             }
         }
-    })
+        if (anim === "jump") {
+            player.play('falling');
+        }
+    });
 
     player.onUpdate(() => {
         camPos(player.pos);
-        if (!player.isGrounded() && player.curAnim() !== 'jump') {
+        if (!player.isGrounded() && !player.isJumping() && player.curAnim() !== 'climb') {
             player.play('falling');
         }
-    })
-    
+
+    });
+
+    player.onBeforePhysicsResolve(collision => {
+        // Allows the player to jump through platforms
+        if (collision.target.is(["platform"]) ) {
+            if (!collision.isBottom()) {
+                collision.preventResolution();
+            }
+        }
+    });
+
     player.onPhysicsResolve(() => {
         camPos(player.pos);
-    })
+    });
 
+    player.onCollide('ladder', () => {
+        onLadder = true;
+    });
+
+    player.onCollideEnd('ladder', () => {
+        onLadder = false;
+    });
 
     return player;
 }
