@@ -1,8 +1,10 @@
 
 import kaboom from "kaboom"
 
-const engine = kaboom({
-    scale: 4
-});
+const engine = kaboom();
+
+export const SCALE = 4;
+
+debug.inspect = false;
 
 export default engine;
