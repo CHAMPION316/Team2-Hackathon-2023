@@ -1,12 +1,17 @@
-import kaboom from "kaboom"
 
-const k = kaboom()
+import game from './game';
+import createPlayer from './player'
 
-k.loadSprite("bean", "sprites/bean.png")
 
-k.add([
-	k.pos(120, 80),
-	k.sprite("bean"),
+setGravity(640);
+
+
+const player = createPlayer(pos(center()), 100);
+
+game.add([
+	rect(width(), 24),
+	area(),
+	outline(1),
+	pos(0, height() - 24),
+	body({ isStatic: true }),
 ])
-
-k.onClick(() => k.addKaboom(k.mousePos()))
