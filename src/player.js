@@ -56,7 +56,7 @@ loadSprite("player", "/assets/sprites/player.png", {
 
 export default function spawnPlayer(pos, hitPoints) {
     const SPEED = 120 * SCALE;
-    const JUMP_FORCE = 360 * SCALE;
+    const JUMP_FORCE = 280 * SCALE;
 
     const player = game.add([
         sprite("player"),
