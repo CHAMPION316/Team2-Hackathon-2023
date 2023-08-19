@@ -1,5 +1,5 @@
 
-import game from './game';
+import game, { SCALE } from './game';
 
 
 loadSprite("player", "/assets/sprites/player.png", {
@@ -44,6 +44,7 @@ loadSprite("player", "/assets/sprites/player.png", {
         "shoot": 64,
         "crouch": 65,
         "hurt": 66,
+        "falling": 12,
         "land": {
             from: 67, to: 68,
             speed: 10,
@@ -53,17 +54,18 @@ loadSprite("player", "/assets/sprites/player.png", {
     }
 });
 
-export default function createPlayer(pos, health) {
-    const SPEED = 120;
-    const JUMP_FORCE = 240
+export default function spawnPlayer(pos, hitPoints) {
+    const SPEED = 120 * SCALE;
+    const JUMP_FORCE = 240 * (SCALE/2);
 
     const player = game.add([
         sprite("player"),
         pos,
         anchor('center'),
+        scale(SCALE),
         area(),
         body(),
-        game.health(health),
+        health(hitPoints),
         'player',
     ]);
 
@@ -108,11 +110,22 @@ export default function createPlayer(pos, health) {
     player.onAnimEnd((anim) => {
         if (anim === "land") {
             if (!isKeyDown("left") && !isKeyDown("right")) {
-                player.play("idle")
+                player.play("idle");
             } else {
-                player.play("run")
+                player.play("run");
             }
         }
+    })
+
+    player.onUpdate(() => {
+        camPos(player.pos);
+        if (!player.isGrounded() && player.curAnim() !== 'jump') {
+            player.play('falling');
+        }
+    })
+    
+    player.onPhysicsResolve(() => {
+        camPos(player.pos);
     })
 
 
