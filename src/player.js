@@ -23,7 +23,7 @@ loadSprite("player", "/assets/sprites/player.png", {
         },
         "climb": {
             from: 24, to: 29,
-            speed: 5,
+            speed: 8,
             loop: true
         },
         "run": {
@@ -91,9 +91,16 @@ export function getPlayer(level) {
     onKeyDown('w', () => {
         if (onLadder) {
             player.move(0, -SPEED/2);
-            player.jump(20);
-            player.play("climb");
+            setGravity(0)
+            if (player.curAnim() !== "climb") player.play("climb");
+        } else {
+            setGravity(640 * SCALE);
+            if (player.curAnim() == "climb") player.play('idle');
         }
+    });
+
+    onKeyDown('s', () => {
+        if (player.curAnim() !== "run") player.play('crouch');
     });
 
     onKeyDown('a', () => {
@@ -117,6 +124,7 @@ export function getPlayer(level) {
             if (player.isGrounded() && !isKeyDown("a") && !isKeyDown("d")) {
                 player.play("idle");
             }
+            setGravity(640 * SCALE);
         });
     });
 
@@ -158,12 +166,13 @@ export function getPlayer(level) {
         camPos(player.pos);
     });
 
-    player.onCollide('ladder', () => {
-        onLadder = true;
+    player.onCollideEnd("ladder", () => {
+        onLadder = false;
+        // player.move(vec2(0,-50));
     });
 
-    player.onCollideEnd('ladder', () => {
-        onLadder = false;
+    player.onCollideUpdate("ladder", () => {
+        onLadder = true;
     });
 
     return player;
