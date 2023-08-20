@@ -1,5 +1,5 @@
 
-import { SCALE } from '../game';
+import { CAMERA_SCALE, SCALE } from '../game';
 import { solidTiles, backgroundTiles, backgroundBuildings, entities, props } from '../sprite-atlas';
 
 const BUILDINGS_LAYER = [
@@ -94,6 +94,19 @@ const ENTITY_LAYER = [
 ];
 
 export function loadLevel() {
+    const levelTileWidth = BACKGROUND_LAYER[0].length;
+    const levelTileHeight = BACKGROUND_LAYER.length;
+    const tileSize = 16;
+    const levelWidth = (levelTileWidth * tileSize);
+    const levelHeight = (levelTileHeight * tileSize);
+    const skyScale = ((height() + levelHeight) / 240) * SCALE;
+
+    add([
+        sprite('skyline', {tiled: true, width: levelWidth}),
+        scale(skyScale),
+        anchor('center'),
+    ]);
+
     // background buildings
     addLevel(BUILDINGS_LAYER, {
         tileWidth: 16 * SCALE,
