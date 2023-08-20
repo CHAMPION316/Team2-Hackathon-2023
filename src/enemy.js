@@ -1,7 +1,7 @@
 import { SCALE } from './game';
 
 // Load all sprites
-loadSprite("green-guy", "/assets/sprites/green-guy.png", {
+loadSprite("green-guy", "assets/sprites/green-guy.png", {
     sliceX: 2, sliceY: 1,
     anims: {
         idle: 0,
@@ -10,7 +10,7 @@ loadSprite("green-guy", "/assets/sprites/green-guy.png", {
         }
     }
 });
-loadSprite("bullet", "/assets/props/bullets/shot-preview.gif");
+loadSprite("bullet", "assets/props/bullets/shot-preview.gif");
 
 
 export function greenGuy() {

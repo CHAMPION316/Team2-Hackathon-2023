@@ -1,35 +1,34 @@
 
-import { SCALE } from './game';
-import { getPlayer } from './player'
-import { loadLevel } from './test-level'
+import { SCALE, CAMERA_SCALE } from './game';
+import { setupPlayer } from './player'
+import * as level1 from './levels/level-1'
 import setupGreenGuy from './enemy';
 import mainScene from './scene/menu'
 import displayUi from './ui/ui';
 import gameover from './scene/gameover';
 
+loadRoot('https://seanyoung247.github.io/Team2-Hackathon-2023/');
 
-scene('game', () => {
+scene('level1', () => {
 	setGravity(640 * SCALE);
-
-	const level = loadLevel();
-	const player = getPlayer(level);
+	
+	camScale(CAMERA_SCALE, CAMERA_SCALE);
+	const level = level1.loadLevel();
+	const player = setupPlayer(level);
 	setupGreenGuy(level);
 
     displayUi(player);
 });
 
+
 scene('main', () => {
 	mainScene();
-    
 });
 
 scene('gameover', () => {
-    gameover();
+	gameover();
 })
 
 go('main');
 
-// //Testing enemy
-// const enemy1 = spawnEnemy(level, player, 15, 3);
-
-
+// TEST
