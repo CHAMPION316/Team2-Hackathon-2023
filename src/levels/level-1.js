@@ -2,8 +2,7 @@
 import { SCALE } from '../game';
 import { solidTiles, backgroundTiles, backgroundBuildings, entities, props } from '../sprite-atlas';
 
-// background buildings
-addLevel([
+const BUILDINGS_LAYER = [
     '                                                                                                                                                                                                                                ',
     '                                                                                                                                                                                                                                ',
     '                                                                                                                                                                                                                                ',
@@ -20,13 +19,8 @@ addLevel([
     '                                                                                                                                                                                                                                ',
     '                                                                                                                                                                                                                                ',
     '                                                                                                                                                                                                                                '
-], {
-    tileWidth: 16 * SCALE,
-	tileHeight: 16 * SCALE,
-    tiles: backgroundBuildings
-});
-
-addLevel([
+];
+const BACKGROUND_LAYER = [
     '                     ---------------------------                                                                                                                                                                                 ',
     '                                                                                                                                                                                                                                 ',
     '                                                                                                                                                                                                                                 ',
@@ -43,14 +37,8 @@ addLevel([
     '   │                 ╠       │a+ f#vs#w│      ╣╠    ╣             │         ╠ #########################╣                  [ ]╠ │╣╠ │╣╠ │╣╠ │╣╠ │╣                                                                                ',
     '   ┴                 ╚    ###┴z   # t#w┴###   ╝╚    ╝             ┴         ╚ #########################╝                     ╚ ┴╝╚ ┴╝╚ ┴╝╚ ┴╝╚ ┴╝                                                                                ',
     '                                                                                                                                       '
-], {
-    tileWidth: 16 * SCALE,
-	tileHeight: 16 * SCALE,
-    tiles: backgroundTiles
-});
-
-// Platforms/Ladders
-addLevel([
+];
+const PLATFORM_LAYER = [
     'O                                                                                                                                                                                                                                O',
     'O                                                                                                                                                                                                                                O',
     'O                                                                                                                                                                                                                                O',
@@ -67,14 +55,8 @@ addLevel([
     'O                                                                                                                          ≡ O                                                                                                    ',
     'O                                                                                                                          ≡ O                                                                                                    ',
     '_________________________________________________________________________________________________________________________________________________________________________________________________________________________________ '
-], {
-    tileWidth: 16 * SCALE,
-	tileHeight: 16 * SCALE,
-    tiles: solidTiles
-});
-
-////////// Props
-addLevel([
+];
+const PROPS_LAYER = [
     '                                                                                                                                                                                                                                  ',
     '                                                                                                                                                                                                                                  ',
     '                                                                                                                                                                                                                                  ',
@@ -91,14 +73,8 @@ addLevel([
     '                                                                                                                                                                                                                                  ',
     '                                                                                                                                                                                                                                  ',
     '     8              9                                                                                                                                                                                                             '
-], {
-    tileWidth: 16 * SCALE,
-	tileHeight: 16 * SCALE,
-    tiles: props
-});
-
-////////// Player/Enemies/Items
-const level = addLevel([
+];
+const ENTITY_LAYER = [
     '                                                                                                                                                                                                                                  ',
     '                                                                                                                                                                                                                                  ',
     '                                                                                                                                                                                                                                  ',
@@ -115,11 +91,42 @@ const level = addLevel([
     '                                                                                                                                                                                                                                  ',
     '                                                                                                                                                                                                                                  ',
     '                                                                                                                                                                                                                                  '
-], {
-    tileWidth: 16 * SCALE,
-	tileHeight: 16 * SCALE,
-    tiles: entities
-});
+];
 
+export function loadLevel() {
+    // background buildings
+    addLevel(BUILDINGS_LAYER, {
+        tileWidth: 16 * SCALE,
+        tileHeight: 16 * SCALE,
+        tiles: backgroundBuildings
+    });
 
-export default level;
+    addLevel(BACKGROUND_LAYER, {
+        tileWidth: 16 * SCALE,
+        tileHeight: 16 * SCALE,
+        tiles: backgroundTiles
+    });
+
+    // Platforms/Ladders
+    addLevel(PLATFORM_LAYER, {
+        tileWidth: 16 * SCALE,
+        tileHeight: 16 * SCALE,
+        tiles: solidTiles
+    });
+
+    ////////// Props
+    addLevel(PROPS_LAYER, {
+        tileWidth: 16 * SCALE,
+        tileHeight: 16 * SCALE,
+        tiles: props
+    });
+
+    ////////// Player/Enemies/Items
+    const level = addLevel(ENTITY_LAYER, {
+        tileWidth: 16 * SCALE,
+        tileHeight: 16 * SCALE,
+        tiles: entities
+    });
+
+    return level;
+}

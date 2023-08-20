@@ -1,7 +1,7 @@
 
 import { SCALE } from './game';
 import { getPlayer } from './player'
-import { loadLevel } from './levels/level-1'
+import * as level1 from './levels/level-1'
 import setupGreenGuy from './enemy';
 
 
@@ -9,7 +9,7 @@ import setupGreenGuy from './enemy';
 scene('game', () => {
 	setGravity(640 * SCALE);
 
-	const level = loadLevel();
+	const level = level1.loadLevel();
 	const player = getPlayer(level);
 	setupGreenGuy(level);
 });
@@ -25,8 +25,5 @@ scene('menu', () => {
 });
 
 go('menu');
-
-// //Testing enemy
-// const enemy1 = spawnEnemy(level, player, 15, 3);
 
 
