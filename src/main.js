@@ -29,3 +29,5 @@ scene('gameover', () => {
 })
 
 go('main');
+
+// TEST
