@@ -56,7 +56,7 @@ loadSprite("player", "/assets/sprites/player.png", {
 
 const SPEED = 120 * SCALE;
 const JUMP_FORCE = 320 * SCALE;
-const HIT_POINTS = 100;
+const HIT_POINTS = 10;
 const SCREEN_OFFSET = 16 * SCALE;
 
 export function player() {
@@ -70,6 +70,7 @@ export function player() {
         }),
         body(),
         health(HIT_POINTS),
+        state("normal", ["hurt", "normal"]),
         'player',
     ];
 }
@@ -83,40 +84,48 @@ export function getPlayer(level) {
 
 
     onKeyPress("space", () => {
-        if (player.isGrounded() && player.curAnim() !== "climb") {
+        if (player.isGrounded() && player.curAnim() !== "climb" && player.state != "hurt") {
             player.jump(JUMP_FORCE)
             player.play("jump")
         }
     });
 
     onKeyDown('w', () => {
-        if (onLadder) {
-            player.move(0, -SPEED/2);
-            setGravity(0)
-            if (player.curAnim() !== "climb") player.play("climb");
-        } else {
-            setGravity(640 * SCALE);
-            if (player.curAnim() === "climb") player.play('idle');
+        if(player.state != "hurt") {
+            if (onLadder) {
+                player.move(0, -SPEED/2);
+                setGravity(0)
+                if (player.curAnim() !== "climb") player.play("climb");
+            } else {
+                setGravity(640 * SCALE);
+                if (player.curAnim() === "climb") player.play('idle');
+            }
         }
     });
 
     onKeyDown('s', () => {
-        if (player.curAnim() !== "run") player.play('crouch');
+        if (player.curAnim() !== "run" && player.state != "hurt") player.play('crouch');
     });
 
     onKeyDown('a', () => {
-        player.move(-SPEED, 0);
-        player.flipX = true;
-        if (player.isGrounded() && player.curAnim() !== "run") {
-            player.play("run");
+        if(player.state != "hurt") {
+            player.move(-SPEED, 0);
+            player.flipX = true;
+            if (player.isGrounded() && player.curAnim() !== "run") {
+                player.play("run");
+            }
         }
+
+        
     });
 
     onKeyDown('d', () => {
-        player.move(SPEED, 0);
-        player.flipX = false;
-        if (player.isGrounded() && player.curAnim() !== "run") {
-            player.play("run");
+        if(player.state != "hurt") {
+            player.move(SPEED, 0);
+            player.flipX = false;
+            if (player.isGrounded() && player.curAnim() !== "run") {
+                player.play("run");
+            }
         }
     });
 
@@ -129,9 +138,6 @@ export function getPlayer(level) {
         });
     });
 
-    player.onHurt(() => {
-        console.log('owie');
-    });
 
     player.onGround(() => {
         player.play("land");
@@ -180,6 +186,39 @@ export function getPlayer(level) {
     player.onCollideUpdate("ladder", () => {
         onLadder = true;
     });
+
+    
+    let invincible = false;
+
+    player.onCollide("enemy", () => {
+        player.enterState("hurt")
+    });
+
+
+
+    player.onStateEnter("hurt", () => {
+        if(!invincible) {
+            player.hurt(1);
+        }
+        
+        invincible = true;
+
+
+        player.play("hurt");
+        wait(0.3, () => {
+            player.play("idle")
+            player.enterState("normal");
+        })
+        wait(1, () => {
+            invincible = false;
+        })
+        
+    })
+
+    player.on("death", () => {
+        destroy(player)
+        go("gameover")
+    })
 
     return player;
 }
