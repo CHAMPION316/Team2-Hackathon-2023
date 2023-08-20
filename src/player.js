@@ -82,10 +82,12 @@ export function setupPlayer(level) {
     player.play('idle');
 
     const followPlayer = () => {
-        camPos(player.pos.x, (
-            player.pos.y - 
-            (height() / (CAMERA_SCALE * 2) - SCREEN_OFFSET)
-        ));
+        let {x,y} = player.pos;
+        const halfHeight = (height() / 2) / CAMERA_SCALE;
+
+        y = (y + halfHeight > level.levelHeight()) ?
+            level.levelHeight() - halfHeight : y;
+        camPos(x,y);
     }
 
 
