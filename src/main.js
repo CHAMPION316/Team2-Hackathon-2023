@@ -1,7 +1,7 @@
 
 import game, { SCALE } from './game';
 import { getPlayer } from './player'
-import level from './test-level'
+import level from './levels/level-1'
 
 
 setGravity(640 * SCALE);
