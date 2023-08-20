@@ -7,4 +7,3 @@ import level from './test-level'
 setGravity(640 * SCALE);
 
 const player = getPlayer(level);
-// const player = spawnPlayer(pos(center()), 100);
