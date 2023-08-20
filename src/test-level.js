@@ -1,19 +1,23 @@
 
 import { SCALE } from './game';
-import { tiles, backgroundTiles, entities } from './warped';
+import { solidTiles, backgroundTiles, entities, props } from './sprite-atlas';
 
 addLevel([
+    '                     ---------------------------                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
     '                                 [ ]                                  ',
     '                     ╔ ▄  p  ┬+ #   p  ┬p  ▄  ╗                       ',
-    '                     ╠ █  ░  │  #[ ]   │▓  █  ╣                       ',
-    '                     ╠       │▓     ▒  │      ╣                       ',
-    '                     ╠       │   [ ]   │      ╣                       ',
-    '                     ╠ █     │         │   █  ╣                       ',
-    '                     ╠    ▒  │         │░     ╣                       ',
-    '                     ╠       │#       #│      ╣                       ',
-    '                     ╠ █     │         │   █  ╣                       ',
-    '                     ╠       │         │      ╣                       ',
-    '                     ╚    ###┴         ┴###   ╝                       ',
+    '                     ╠ █  ░  │  #[ ]   │▓  █  ╣                   ┬   ',
+    '                     ╠       │▓     ▒  │      ╣                   │   ',
+    '                     ╠       │   [ ]   │      ╣                   │   ',
+    '                     ╠ █     │         │   █  ╣                   │   ',
+    '   ┬                 ╠    ▒  │         │░     ╣                   │   ',
+    '   │                 ╠       │#       w│      ╣                   │   ',
+    '   │                 ╠ █     │q_______w│   █  ╣                   │   ',
+    '   │                 ╠       │a+ f#vs#w│      ╣                   │   ',
+    '   ┴                 ╚    ###┴z   # t#w┴###   ╝                   ┴   ',
     '                                                                      '
 ], {
     tileWidth: 16 * SCALE,
@@ -23,22 +27,50 @@ addLevel([
 
 // Platforms/Ladders
 addLevel([
-    '                    <===========================>                     ',
-    '                                  ≡                                   ',
-    '                                  ≡                                   ',
-    '                                  ≡                                   ',
-    '                                  ≡                                   ',
-    '                                  ≡                                   ',
-    '                                  ¯                                   ',
-    '                              <=======>                               ',
-    '                                                                      ',
-    '                                                                      ',
-    '                                                                      ',
+    'O                                                                    O',
+    'O                                                                    O',
+    'O                                                                    O',
+    'O                                                                    O',
+    'O                   <===========================>                    O',
+    'O                                 ≡                                  O',
+    'O                                 ≡                                  O',
+    'O                                 ≡                                  O',
+    'O                                 ≡                                  O',
+    'O                                 ≡                                  O',
+    'O                                 ¯                                  O',
+    'O                             <=======>                              O',
+    'O                                                                    O',
+    'O                                                                    O',
+    'O                                                                    O',
     '______________________________________________________________________'
 ], {
     tileWidth: 16 * SCALE,
 	tileHeight: 16 * SCALE,
-    tiles
+    tiles: solidTiles
+});
+
+////////// Props
+addLevel([
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '                               7   0                                  ',
+    '                    d       f      3            B                     ',
+    '                                                                      ',
+    '                                        4                        6 5  ',
+    '                                                                      ',
+    '   m                                                                  ',
+    '  n s                                                                 ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '     8              9                                                 '
+], {
+    tileWidth: 16 * SCALE,
+	tileHeight: 16 * SCALE,
+    tiles: props
 });
 
 ////////// Player/Enemies/Items
@@ -48,7 +80,11 @@ const level = addLevel([
     '                                                                      ',
     '                                                                      ',
     '                                                                      ',
-    ' P                                                                    ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '                                                                      ',
+    '    P                                                                 ',
     '                                                                      ',
     '                                                                      ',
     '                                                                      ',

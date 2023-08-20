@@ -57,6 +57,7 @@ loadSprite("player", "/assets/sprites/player.png", {
 const SPEED = 120 * SCALE;
 const JUMP_FORCE = 320 * SCALE;
 const HIT_POINTS = 100;
+const SCREEN_OFFSET = 16 * SCALE;
 
 export function player() {
     return [
@@ -82,7 +83,7 @@ export function getPlayer(level) {
 
 
     onKeyPress("space", () => {
-        if (player.isGrounded()) {
+        if (player.isGrounded() && player.curAnim() !== "climb") {
             player.jump(JUMP_FORCE)
             player.play("jump")
         }
@@ -95,7 +96,7 @@ export function getPlayer(level) {
             if (player.curAnim() !== "climb") player.play("climb");
         } else {
             setGravity(640 * SCALE);
-            if (player.curAnim() == "climb") player.play('idle');
+            if (player.curAnim() === "climb") player.play('idle');
         }
     });
 
@@ -146,7 +147,8 @@ export function getPlayer(level) {
     });
 
     player.onUpdate(() => {
-        camPos(player.pos);
+        // camPos(player.pos);
+        camPos(player.pos.x, (player.pos.y - (height() / 2)) + SCREEN_OFFSET);
         if (!player.isGrounded() && !player.isJumping() && player.curAnim() !== 'climb') {
             player.play('falling');
         }
@@ -163,7 +165,7 @@ export function getPlayer(level) {
     });
 
     player.onPhysicsResolve(() => {
-        camPos(player.pos);
+        camPos(player.pos.x, (player.pos.y - (height() / 2)) + SCREEN_OFFSET);
     });
 
     player.onCollideEnd("ladder", () => {
@@ -177,3 +179,4 @@ export function getPlayer(level) {
 
     return player;
 }
+
