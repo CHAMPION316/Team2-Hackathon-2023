@@ -1,5 +1,5 @@
 
-import { SCALE } from './game';
+import { SCALE, CAMERA_SCALE } from './game';
 
 
 loadSprite("player", "/assets/sprites/player.png", {
@@ -57,7 +57,7 @@ loadSprite("player", "/assets/sprites/player.png", {
 const SPEED = 120 * SCALE;
 const JUMP_FORCE = 320 * SCALE;
 const HIT_POINTS = 100;
-const SCREEN_OFFSET = 16 * SCALE;
+const SCREEN_OFFSET = 16;
 
 export function player() {
     return [
@@ -74,12 +74,19 @@ export function player() {
     ];
 }
 
-export function getPlayer(level) {
+export function setupPlayer(level) {
     const player = level.get("player")[0];
     const dirKeys = ["w", "s", "a", "d"];
     let onLadder = false;
 
     player.play('idle');
+
+    const followPlayer = () => {
+        camPos(player.pos.x, (
+            player.pos.y - 
+            (height() / (CAMERA_SCALE * 2) - SCREEN_OFFSET)
+        ));
+    }
 
 
     onKeyPress("space", () => {
@@ -151,8 +158,7 @@ export function getPlayer(level) {
     });
 
     player.onUpdate(() => {
-        // camPos(player.pos);
-        camPos(player.pos.x, (player.pos.y - (height() / 2)) + SCREEN_OFFSET);
+        followPlayer();
         if (!player.isGrounded() && !player.isJumping() && player.curAnim() !== 'climb') {
             player.play('falling');
         }
@@ -169,7 +175,7 @@ export function getPlayer(level) {
     });
 
     player.onPhysicsResolve(() => {
-        camPos(player.pos.x, (player.pos.y - (height() / 2)) + SCREEN_OFFSET);
+        followPlayer();
     });
 
     player.onCollideEnd("ladder", () => {
