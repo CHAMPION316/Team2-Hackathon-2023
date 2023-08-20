@@ -180,6 +180,12 @@ loadSprite('monitor-face', 'assets/props/monitorface.png',
     propAnim(4, 5)
 );
 
+////////// background
+// loadSprite('buildings-bg', '/assets/background/buildings-bg.png');
+// loadSprite('near-buildings-bg', '/assets/background/near-buildings-bg.png');
+// loadSprite('skyline-a', '/assets/background/skyline-a.png');
+// loadSprite('skyline-b', '/assets/background/skyline-b.png');
+
 
 const decoration = (spriteKey, frames=false) => {
     return () => [
@@ -336,4 +342,20 @@ export const solidTiles = {
         tile({ isObstacle: true }),
         'ground'
     ] 
+};
+
+// variable for background
+export const backgroundBuildings = {
+    // far away buildings
+    '≡': () => [
+        sprite("buildings-bg"),
+        scale(SCALE),
+        area({
+            scale:vec2(0.1,1),
+            offset:vec2(16*4,-10)
+        }),
+        body({isStatic: true}),
+        tile({ isObstacle: false }),
+        'buildings'
+    ]
 };
