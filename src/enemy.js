@@ -80,6 +80,8 @@ export function setupGreenGuy(level) {
          * This function needs to be executed in an interval to work continously 
          */
         function attackLoop() {
+            if (!player.exists()) return
+
             const angle = player.pos.angle(enemy.pos);
             const toPlayerAngle = player.pos.sub(enemy.pos).unit();
 
@@ -111,7 +113,7 @@ export function setupGreenGuy(level) {
                 //Collision with player
                 bullet.onCollide("player", () => {
                     destroy(bullet);
-                    player.hurt(20);
+                    player.enterState("hurt");
                 });
             }
         }
