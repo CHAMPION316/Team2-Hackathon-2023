@@ -1,6 +1,6 @@
 
-import { SCALE } from '../game';
-import { player } from '../player';
+import { SCALE } from './game';
+import { player } from './player';
 
 ////////// Tile Set
 loadSpriteAtlas("/assets/tiles/warped.png", {

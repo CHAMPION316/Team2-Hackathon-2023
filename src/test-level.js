@@ -1,6 +1,6 @@
 
 import { SCALE } from './game';
-import { solidTiles, backgroundTiles, entities, props } from './assets/warped';
+import { solidTiles, backgroundTiles, entities, props } from './sprite-atlas';
 
 addLevel([
     '                     ---------------------------                      ',
