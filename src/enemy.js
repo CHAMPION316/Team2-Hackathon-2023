@@ -50,21 +50,21 @@ export function spawnEnemy(level, player, posX, posY) {
     })
 
 
-
-
-    let attackLoopInterval; 
-
-    enemy.onStateEnter("attack", () => {
-        attackLoopInterval = setInterval(() => {
-            const fixedPlayerPos = player.pos;
+function attackLoop() {
+    const fixedPlayerPos = player.pos;
             const angle = player.pos.angle(enemy.pos);
-            if(angle < -90) {
+            const toPlayerAngle = player.pos.sub(enemy.pos).unit();
+
+            if(player.pos.sub(enemy.pos).unit().x < 0.0) {
                 enemy.flipX = false;
+                // console.log(angle + " is the current angle it should be LESS THAN -90. Looking left now")
             }
-            else if(angle > -90) {
+            else if(player.pos.sub(enemy.pos).unit().x > 0.0) {
                 enemy.flipX = true;
+                // console.log(angle + " is the current angle it should be MORE THAN -90. Looking right nows")
             }
-            if((-250 <= angle && angle <= -60) || (60 <= angle <= 250)) {
+
+            if(0.4 <= toPlayerAngle.x || toPlayerAngle.x <= -0.4) {
                 const bullet = add([
                     sprite("bullet"),
                     enemy.flipX ? pos(enemy.pos.x+50, enemy.pos.y-60) : pos(enemy.pos.x-50, enemy.pos.y-60),
@@ -74,7 +74,7 @@ export function spawnEnemy(level, player, posX, posY) {
                     state("fly", ["fly"]),
                     area(),
                     "bullet",
-                    move(angle, 1200),
+                    move(angle, 600),
                     offscreen({ destroy: true }),
                 ])
 
@@ -83,7 +83,14 @@ export function spawnEnemy(level, player, posX, posY) {
                     player.hurt(20);
                 });
             }
-        }, 1000);
+}
+
+
+    let attackLoopInterval; 
+
+    enemy.onStateEnter("attack", () => {
+        attackLoop();
+        attackLoopInterval = setInterval(attackLoop, 1000);
     });
 
     enemy.onStateEnd("attack", () => {
