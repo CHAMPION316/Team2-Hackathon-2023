@@ -5,11 +5,11 @@ import displaySoundSettings from "../ui/sound_settings";
 function mainScene() {
 	setBackground(0,0,60)
 
-	loadSprite("buildings", "/assets/background/buildings-bg.png")
-	loadSprite("nearBuildings", "/assets/background/near-buildings-bg.png")
-	loadSprite("skyline", "/assets/background/skyline-a.png")
+	loadSprite("buildings", "assets/background/buildings-bg.png")
+	loadSprite("nearBuildings", "assets/background/near-buildings-bg.png")
+	loadSprite("skyline", "assets/background/skyline-a.png")
 
-	loadFont("Unscii", "/assets/fonts/unscii-16.ttf")
+	loadFont("Unscii", "assets/fonts/unscii-16.ttf")
 
 	const backgroundLayerBottom = add([]);
 	const backgroundLayerMiddle = add([]);

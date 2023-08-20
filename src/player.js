@@ -2,7 +2,7 @@
 import { SCALE, CAMERA_SCALE } from './game';
 
 
-loadSprite("player", "/assets/sprites/player.png", {
+loadSprite("player", "assets/sprites/player.png", {
     sliceX: 8,
     sliceY: 9,
     anims: {
