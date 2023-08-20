@@ -5,8 +5,8 @@ function displaySoundSettings() {
     volume((savedVolume ? savedVolume : 0.5));
 
     //Load sprites
-    loadSprite("mute", "/assets/ui/mute.png")
-    loadSprite("speaker", "/assets/ui/speaker.png")
+    loadSprite("mute", "assets/ui/mute.png")
+    loadSprite("speaker", "assets/ui/speaker.png")
 
     // Setup button and handle
     const soundBtn = add([
