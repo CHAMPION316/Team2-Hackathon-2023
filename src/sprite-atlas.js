@@ -1,6 +1,7 @@
 
 import { SCALE } from './game';
 import { player } from './player';
+import { greenGuy } from './enemy';
 
 ////////// Tile Set
 loadSpriteAtlas("/assets/tiles/warped.png", {
@@ -273,6 +274,7 @@ export const backgroundTiles = {
 
 export const entities = {
     'P': player,
+    'G': greenGuy,
 }
 
 export const solidTiles = {

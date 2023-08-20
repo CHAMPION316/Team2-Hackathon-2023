@@ -75,6 +75,7 @@ addLevel([
 
 ////////// Player/Enemies/Items
 const level = addLevel([
+    '                               G                                      ',
     '                                                                      ',
     '                                                                      ',
     '                                                                      ',
@@ -83,8 +84,7 @@ const level = addLevel([
     '                                                                      ',
     '                                                                      ',
     '                                                                      ',
-    '                                                                      ',
-    '    P                                                                 ',
+    '    P           G                                                     ',
     '                                                                      ',
     '                                                                      ',
     '                                                                      ',
