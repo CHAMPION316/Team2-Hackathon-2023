@@ -50,7 +50,7 @@ function mainScene() {
 		pos(center().x, center().y - 200),
 	])
 	
-	addButton("Start", center(), () => go("game"))
+	addButton("Start", center(), () => go("level1"))
 
 	displaySoundSettings();
 }

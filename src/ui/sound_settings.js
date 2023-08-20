@@ -1,8 +1,8 @@
 
 function displaySoundSettings() {
     //Load volume level
-    const savedVolume = parseFloat(localStorage.getItem("volume")) > 1 ? 0.5 : parseFloat(localStorage.getItem("volume"));
-    volume(savedVolume);
+    const savedVolume = parseFloat(localStorage.getItem("volume"));
+    volume((savedVolume ? savedVolume : 0.5));
 
     //Load sprites
     loadSprite("mute", "/assets/ui/mute.png")

@@ -13,7 +13,7 @@ scene('level1', () => {
 	
 	camScale(CAMERA_SCALE, CAMERA_SCALE);
 	const level = level1.loadLevel();
-	setupPlayer(level);
+	const player = setupPlayer(level);
 	setupGreenGuy(level);
 
     displayUi(player);
@@ -22,13 +22,10 @@ scene('level1', () => {
 
 scene('main', () => {
 	mainScene();
-    
 });
 
 scene('gameover', () => {
-    gameover();
+	gameover();
 })
 
 go('main');
-
-
