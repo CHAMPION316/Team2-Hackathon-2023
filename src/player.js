@@ -129,6 +129,10 @@ export function getPlayer(level) {
         });
     });
 
+    player.onHurt(() => {
+        console.log('owie');
+    });
+
     player.onGround(() => {
         player.play("land");
     });
