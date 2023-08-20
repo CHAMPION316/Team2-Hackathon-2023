@@ -1,18 +1,32 @@
 
-import game, { SCALE } from './game';
+import { SCALE } from './game';
 import { getPlayer } from './player'
-import level from './test-level'
-import spawnEnemy from './enemy';
+import { loadLevel } from './test-level'
+import setupGreenGuy from './enemy';
 
 
-setGravity(640 * SCALE);
 
+scene('game', () => {
+	setGravity(640 * SCALE);
 
-const player = getPlayer(level);
+	const level = loadLevel();
+	const player = getPlayer(level);
+	setupGreenGuy(level);
+});
 
+scene('menu', () => {
+	add([
+		text('press a key')
+	]);
 
-//Testing enemy
-const enemy1 = spawnEnemy(level, player, 15, 3);
+	onKeyPress(()=> {
+		go('game');
+	});
+});
 
-// const player = spawnPlayer(pos(center()), 100);
+go('menu');
+
+// //Testing enemy
+// const enemy1 = spawnEnemy(level, player, 15, 3);
+
 

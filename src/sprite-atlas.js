@@ -1,6 +1,7 @@
 
 import { SCALE } from './game';
 import { player } from './player';
+import { greenGuy } from './enemy';
 
 ////////// Tile Set
 loadSpriteAtlas("/assets/tiles/warped.png", {
@@ -180,6 +181,11 @@ loadSprite('monitor-face', 'assets/props/monitorface.png',
     propAnim(4, 5)
 );
 
+////////// Background
+loadSprite('skyline', 'assets/background/skyline.png', {
+    sliceX: 2, sliceY: 1
+});
+
 
 const decoration = (spriteKey, frames=false) => {
     return () => [
@@ -273,6 +279,7 @@ export const backgroundTiles = {
 
 export const entities = {
     'P': player,
+    'G': greenGuy,
 }
 
 export const solidTiles = {
