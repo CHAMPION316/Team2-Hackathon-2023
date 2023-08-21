@@ -1,7 +1,7 @@
 
 import { SCALE, CAMERA_SCALE } from './game';
 
-
+// Load player sprites
 loadSprite("player", "assets/sprites/player.png", {
     sliceX: 8,
     sliceY: 9,
@@ -55,12 +55,24 @@ loadSprite("player", "assets/sprites/player.png", {
 });
 loadSprite("bullet", "assets/props/bullets/shot-preview.gif");
 
+
+// Load player sounds
+loadSound("jump", "/assets/audio/jump.wav")
+loadSound("player-damage", "/assets/audio/player_damage.wav")
+loadSound("player-death", "/assets/audio/player_death.wav")
+loadSound("player-shoot", "/assets/audio/shoot_player.wav")
+
+//Constants
 const SPEED = 120 * SCALE;
 const JUMP_FORCE = 320 * SCALE;
 
 const HIT_POINTS = 10;
 const SCREEN_OFFSET = 16;
 
+/**
+ * 
+ * @returns player object
+ */
 export function player() {
     return [
         sprite("player"),
@@ -77,6 +89,11 @@ export function player() {
     ];
 }
 
+/**
+ * 
+ * @param {*} level - 
+ * @returns 
+ */
 export function setupPlayer(level) {
     const player = level.get("player")[0];
     const dirKeys = ["w", "s", "a", "d"];
@@ -84,6 +101,7 @@ export function setupPlayer(level) {
 
     player.play('idle');
 
+    //The camera following the player?
     const followPlayer = () => {
         let {x,y} = player.pos;
         const halfHeight = (height() / 2) / CAMERA_SCALE;
@@ -93,10 +111,11 @@ export function setupPlayer(level) {
         camPos(x,y);
     }
 
-
+    // All key presses
     onKeyPress("space", () => {
         if (player.isGrounded() && player.curAnim() !== "climb" && player.state != "hurt") {
             player.jump(JUMP_FORCE)
+            play("jump");
             player.play("jump")
         }
     });
@@ -144,6 +163,7 @@ export function setupPlayer(level) {
         }
     });
 
+    // Set player to idle
     dirKeys.forEach((key) => {
         onKeyRelease(key, () => {
             if (player.isGrounded() && !isKeyDown("a") && !isKeyDown("d")) {
@@ -153,7 +173,7 @@ export function setupPlayer(level) {
         });
     });
 
-
+    //Landing animation
     player.onGround(() => {
         player.play("land");
     });
@@ -202,22 +222,24 @@ export function setupPlayer(level) {
     });
 
     
+    // Invincibility flag
     let invincible = false;
 
+    // Hurt player when they collide with the enemy
     player.onCollide("enemy", () => {
         player.enterState("hurt")
     });
 
-
-
+    // Puts player into hurt state
     player.onStateEnter("hurt", () => {
+        //Check if the player is on damage cooldown
         if(!invincible) {
+            play("player-damage")
             player.hurt(1);
         }
-        
         invincible = true;
 
-
+        //Hurt player an play animation and turn of damage cooldown
         player.play("hurt");
         wait(0.3, () => {
             player.play("idle")
@@ -229,6 +251,7 @@ export function setupPlayer(level) {
         
     })
 
+    // Bullet shooting
     onMousePress(() => {
         const bulletPos = vec2(player.pos);
         const offset = vec2(15,41);
@@ -270,6 +293,7 @@ export function setupPlayer(level) {
 
         //Check if the angle is not too steep
         if(0.4 <= toPlayerAngle.x || toPlayerAngle.x <= -0.4) {
+            play("player-shoot");
             //Spawn bullet
             const bullet = add([
                 sprite("bullet"),
@@ -294,7 +318,9 @@ export function setupPlayer(level) {
         }
     });
 
+    // Player death
     player.on("death", () => {
+        play("player-death")
         destroy(player)
         go("gameover")
     })
