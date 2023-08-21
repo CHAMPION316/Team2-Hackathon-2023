@@ -4,7 +4,7 @@ import { player } from './player';
 import { greenGuy } from './enemy';
 
 ////////// Tile Set
-loadSpriteAtlas("assets/tiles/warped.png", {
+loadSpriteAtlas("/assets/tiles/warped.png", {
     "blank": {
         x: 0, y: 0, width: 16, height: 16
     },
@@ -148,21 +148,21 @@ const propAnim = (frames, speed) => ({
 });
 
 ////////// Props - static
-loadSprite('antenna', 'assets/props/antenna.png');
-loadSprite('banner-arrow', 'assets/props/banner-arrow.png');
-loadSprite('banner-floor', 'assets/props/banner-floor.png');
-loadSprite('banner-open', 'assets/props/banner-open.png');
-loadSprite('banner-small', 'assets/props/banner-small.png');
-loadSprite('banners', 'assets/props/banners.png');
-loadSprite('control-box-1', 'assets/props/control-box-1.png');
-loadSprite('control-box-2', 'assets/props/control-box-2.png');
-loadSprite('control-box-3', 'assets/props/control-box-3.png');
-loadSprite('hotel-sign', 'assets/props/hotel-sign.png');
+loadSprite('antenna', '/assets/props/antenna.png');
+loadSprite('banner-arrow', '/assets/props/banner-arrow.png');
+loadSprite('banner-floor', '/assets/props/banner-floor.png');
+loadSprite('banner-open', '/assets/props/banner-open.png');
+loadSprite('banner-small', '/assets/props/banner-small.png');
+loadSprite('banners', '/assets/props/banners.png');
+loadSprite('control-box-1', '/assets/props/control-box-1.png');
+loadSprite('control-box-2', '/assets/props/control-box-2.png');
+loadSprite('control-box-3', '/assets/props/control-box-3.png');
+loadSprite('hotel-sign', '/assets/props/hotel-sign.png');
 ////////// Props - animated
-loadSprite('banner-big', 'assets/props/banner-big.png', 
+loadSprite('banner-big', '/assets/props/banner-big.png', 
     propAnim(4, 8)
 );
-loadSprite('banner-coke', 'assets/props/banner-coke.png',
+loadSprite('banner-coke', '/assets/props/banner-coke.png',
     propAnim(3, 5)
 );
 loadSprite('banner-neon', 'assets/props/banner-neon.png',
@@ -343,20 +343,4 @@ export const solidTiles = {
         tile({ isObstacle: true }),
         'ground'
     ] 
-};
-
-// variable for background
-export const backgroundBuildings = {
-    // far away buildings
-    '≡': () => [
-        sprite("buildings-bg"),
-        scale(SCALE),
-        area({
-            scale:vec2(0.1,1),
-            offset:vec2(16*4,-10)
-        }),
-        body({isStatic: true}),
-        tile({ isObstacle: false }),
-        'buildings'
-    ]
 };
