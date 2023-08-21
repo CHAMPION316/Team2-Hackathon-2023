@@ -73,6 +73,11 @@ export function setupGreenGuy(level) {
             clearInterval(attackLoopInterval);
         })
 
+
+        enemy.on("death", () => {
+            destroy(enemy)
+        })
+
         /**
          * Executes one attack cycle, checks the position to the player and turns towards them.
          * Shoots bullet if the angle isn't to steep. The bullet travels by given ENEMY_ATTACK_SPEED constant.
@@ -105,6 +110,7 @@ export function setupGreenGuy(level) {
                     rotate(angle),
                     state("fly", ["fly"]),
                     area(),
+                    health(3),
                     "bullet",
                     move(angle, ENEMY_ATTACK_BULLET_SPEED),
                     offscreen({ destroy: true }),

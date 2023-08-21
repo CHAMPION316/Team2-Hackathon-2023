@@ -48,7 +48,7 @@ function gameover() {
 		anchor("center"),
 		pos(center().x, center().y - 200),
 	])
-	addButton("Restart", vec2(center().x, center().y), () => go("game"))
+	addButton("Restart", vec2(center().x, center().y), () => go("level1"))
 	addButton("Main menu", vec2(center().x, center().y + 100), () => go("main"))
 
 	displaySoundSettings();
