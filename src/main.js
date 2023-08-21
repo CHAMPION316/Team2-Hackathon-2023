@@ -7,12 +7,14 @@ import mainScene from './scene/menu'
 import displayUi from './ui/ui';
 import gameover from './scene/gameover';
 
-//loadRoot('https://seanyoung247.github.io/Team2-Hackathon-2023/');
-loadRoot('/Team2-Hackathon-2023/');
-// loadRoot('');
 
-if (window.location.host.includes('github.io')) 
+loadRoot('/Team2-Hackathon-2023/');
+
+if (window.location.host.includes('github.io')) {
 	console.log('on github');
+} else {
+	console.log('not github');
+}
 
 scene('level1', () => {
 	setGravity(640 * SCALE);
