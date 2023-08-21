@@ -53,6 +53,7 @@ loadSprite("player", "assets/sprites/player.png", {
 
     }
 });
+loadSprite("bullet", "assets/props/bullets/shot-preview.gif");
 
 const SPEED = 120 * SCALE;
 const JUMP_FORCE = 320 * SCALE;
@@ -223,6 +224,48 @@ export function setupPlayer(level) {
         })
         
     })
+
+    onMousePress(() => {
+        
+        const angle = toWorld(mousePos()).angle(vec2(player.pos.x, player.pos.y-30));
+        const toPlayerAngle = toWorld(mousePos()).sub(player.pos).unit();
+
+        //Determine player position and look to the player position during the attack
+        if(player.pos.sub(mousePos()).unit().x < 0.0) {
+            player.flipX = false;
+        }
+        else if(player.pos.sub(enemy.pos).unit().x > 0.0) {
+            player.flipX = true;
+        }
+        console.log(mousePos())
+        console.log("Mouse Position:", mousePos());
+        console.log("Player Position:", player.pos);
+        console.log(angle);
+        console.log(toPlayerAngle);
+        //Check if the angle is not to steep
+        if(0.4 <= toPlayerAngle.x || toPlayerAngle.x <= -0.4) {
+            //Spawn bullet
+            const bullet = add([
+                sprite("bullet"),
+                // Flip bullet depending on the shooting direction 
+                pos(vec2(player.pos.x, player.pos.y-30)),
+                rgb(),
+                scale(SCALE/1.5),
+                rotate(angle),
+                state("fly", ["fly"]),
+                area(),
+                "friendly-bullet",
+                move(angle, 800),
+                offscreen({ destroy: true }),
+            ])
+
+            //Collision with enemy
+            bullet.onCollide("enemy", (enemy) => {
+                destroy(bullet);
+                enemy.hurt(1);
+            });
+        }
+    });
 
     player.on("death", () => {
         destroy(player)

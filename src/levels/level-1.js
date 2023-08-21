@@ -86,7 +86,7 @@ const ENTITY_LAYER = [
     '                                                                                                                                                                                                                                  ',
     '    P                                                                                                                                                                                                                             ',
     '                                                                                                                                                                                                                                  ',
-    '                                                                                                                                                                                                                                  ',
+    '                                                                                           G    G   G   G                                                                                                                         ',
     '                                                                                                                                                                                                                                  ',
     '                                                                                                                                                                                                                                  ',
     '                                                                                                                                                                                                                                  ',
@@ -94,6 +94,8 @@ const ENTITY_LAYER = [
 ];
 
 export function loadLevel() {
+    setCursor("crosshair")
+
     const levelTileWidth = BACKGROUND_LAYER[0].length;
     const levelTileHeight = BACKGROUND_LAYER.length;
     const tileSize = 16;
