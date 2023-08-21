@@ -18,36 +18,24 @@ Live link can be found here - [Code Nexus](https://seanyoung247.github.io/Team2-
 4. [Strategy](#strategy)
 5. [Structure](#structure)
 6. [Design choices](#design-choices)
-
-    3. [User Stories](#user-stories)
-3. [Design](#design)
-    1. [Design Choices](#design-choices)
-    2. [Colors](#colors)
-    3. [Fonts](#fonts)
-    4. [Structure](#structure)
-    5. [Wireframes](#wireframes)
-4. [Technologies Used](#technologies-used)
+7. [Technologies Used](#technologies-used)
     1. [Languages](#languages)
     2. [Frameworks](#frameworks)
-    3. [Tools](#tools)
-    4. [Pages](#pages)
-
-6. [Validation and Testing](#validation-and-testing)
-    1. [HTML Validation](#html-validation)
-    2. [CSS Validation](#css-validation)
-    3. [JavaScript Validation](#javascript-validation)
-    4. [Accessibility](#accessibility)
-    5. [Performance](#performance)
-    6. [Device testing](#device-testing)
-    7. [Browser compatibility](#browser-compatibility)
-    8. [Testing user stories](#testing-user-stories)
-7. [Bugs](#bugs)
-8. [Deployment](#deployment)
-9. [Credits](#credits)
-    1. [Media](#media)
-    2. [Code](#code)
-    3. [Acknowledgements](#acknowledgements)
-10. [License](#license)
+8. [Testing](#testing)
+    1. [Manual testing](#manual-testing)
+    2. [Browser testing](#browser-testing)
+9. [Bugs](#bugs)
+    1. [During testing](#during-testing)
+    2. [Unfixed bugs](#unfixed-bugs)
+10. [Deployment](#deployment)
+    1. [Local deployment](#local-deployment)
+    2. [Build](#build)
+11. [Text content](#text-content)
+12. [Daily logs](#daily-logs)
+13. [Design](#design)
+14. [Audio](#audio)
+15. [Credits](#credits)
+16. [License](#license)
 
 ## Goal for hackathon project
 
@@ -165,6 +153,8 @@ A start menu that you click and then you're thrown to the action immediately.
 
 ## Testing
 
+### Manual testing
+
 - VS Code workspace was used to test functionality for game
 - Before deployment testing with a large number of different inputs. Letters, characters, lengths, reverse, capital, lowercase.
 
@@ -176,17 +166,17 @@ A start menu that you click and then you're thrown to the action immediately.
 
 ## Bugs 
 
-#### During Testing
+### During Testing
 
 - (***Ladder climb***) - when reaching top of ladder player would stutter to reach top
 - (***Floor fall***) - For some reason characer would fall through fall in a certain location of map but wouldn't always happen
 
-#### Unfixed Bugs
+### Unfixed Bugs
 - (***Jump on crouch***) - while crouched user can still jump in crouch animation
 - (***Floor fall***) - For some reason characer would fall through fall in a certain location of map but wouldn't always happen
 - Sometimes upon dying or constant refreshes character and enemies will spawn invinsible
 
-## Hosting & Deployment
+## Deployment
 
 You can fork the repository by following these steps:
 
