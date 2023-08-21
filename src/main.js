@@ -6,9 +6,12 @@ import setupGreenGuy from './enemy';
 import mainScene from './scene/menu'
 import displayUi from './ui/ui';
 import gameover from './scene/gameover';
+import winScene from './scene/win';
 
 scene('level1', () => {
 	setGravity(640 * SCALE);
+
+
 	
 	camScale(CAMERA_SCALE, CAMERA_SCALE);
 	const level = level1.loadLevel();
@@ -25,6 +28,10 @@ scene('main', () => {
 
 scene('gameover', () => {
 	gameover();
+})
+
+scene('win', () => {
+    winScene();
 })
 
 go('main');
