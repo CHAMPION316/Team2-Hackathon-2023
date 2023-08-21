@@ -8,7 +8,36 @@ Live link can be found here - [Code Nexus](https://seanyoung247.github.io/Team2-
 \
 &nbsp;
 
-# Goal for hackathon project
+## Table of Content
+
+1. [Goal for hackathon project](#goal-for-hackathon-project)
+2. [Features](#features)
+    1. [Existing features](#existing-features)
+    2. [Future features to implement](#future-features-to-implement)
+3. [User Stories](#user-stories)
+4. [Strategy](#strategy)
+5. [Structure](#structure)
+6. [Design choices](#design-choices)
+7. [Technologies Used](#technologies-used)
+    1. [Languages](#languages)
+    2. [Frameworks](#frameworks)
+8. [Testing](#testing)
+    1. [Manual testing](#manual-testing)
+    2. [Browser testing](#browser-testing)
+9. [Bugs](#bugs)
+    1. [During testing](#during-testing)
+    2. [Unfixed bugs](#unfixed-bugs)
+10. [Deployment](#deployment)
+    1. [Local deployment](#local-deployment)
+    2. [Build](#build)
+11. [Text content](#text-content)
+12. [Daily logs](#daily-logs)
+13. [Design](#design)
+14. [Audio](#audio)
+15. [Credits](#credits)
+16. [License](#license)
+
+## Goal for hackathon project
 
 The mission for this project was to create a retro game with 80's music and deploy it. In order to particpate one must be a student at Code Institute or an alumni.
 **([Promo Banner](/docs/wireframes/hackathon-banner-20231608.jpg))**
@@ -41,7 +70,7 @@ with, connecting and working together as a team.
 - Tuesday, 22nd August
     - **Winners Announcement** - Winners will be announced at 4pm on Slack.
 
-# Features
+## Features
 
 ### Existing features:
 
@@ -56,7 +85,7 @@ with, connecting and working together as a team.
         - Shoot with left click on mouse by aiming where you want to shoot
 
     - Environment interaction:
-        - Climb ladders
+        - Climb ladders with W
     - Player Health
         - [Health Bar](docs/wireframes/player-health.jpg "health bar")
 
@@ -80,84 +109,7 @@ with, connecting and working together as a team.
 - shield pick ups  + more weapons
 - collectables
 
-
-## Testing
-
-- VS Code workspace was used to test functionality for game
-- Before deployment testing with a large number of different inputs. Letters, characters, lengths, reverse, capital, lowercase.
-
-#### Breakpoints
-
-- There are not breakpoints set for this project
-
-### Browser testing
-
-- Test on Firefox, Edge, Chrome, and Safari
-- General testing on the laptop of each team member each using Chrome.
-
-### Bugs 
-
-#### During Testing
-
-- (***Ladder climb***) - when reaching top of ladder player would stutter to reach top
-- (***Floor fall***) - For some reason characer would fall through fall in a certain location of map but wouldn't always happen
-
-#### Unfixed Bugs
-- (***Jump on crouch***) - while crouched user can still jump in crouch animation
-- (***Floor fall***) - For some reason characer would fall through fall in a certain location of map but wouldn't always happen
-- Sometimes upon dying or constant refreshes character and enemies will spawn invinsible
-
-
-## Hosting & Deployment
-
-- The site was hosted and deployed to [GitHub Pages](https://seanyoung247.github.io/Team2-Hackathon-2023/ "link") 
-- No API needed
-
-## Technologies used
-
-### Languages
-
-* javascript
-* html
-
-### Frameworks
-
-* kaboom.js
-
-### Text content
-
-Text content was a collaboration between all team members on our constent ***SLACK***  24/7 calls
-
-### Daily logs
-
-In the ***calls*** folder all daily conversations for the project were logged in.
-- [20231608-Call](/docs/calls/20231608.md)
-- [20231708-Call](/docs/calls/20231708.md)
-- [20231808-Call](/docs/calls/20231808.md)
-- [20231908-Call](/docs/calls/20231908.md)
-- [20232008-Call](/docs/calls/20232008.md)
-
-### Design
-- Map design were mostly assets thanks to:
-    - [Warped City](https://ansimuz.itch.io/warped-city "Warped City")
-
-- Main character was also a design from the Warped City assets
-- Sprites done by **Abhilash** and **Robin**
-- Map design done by **Sean** and **Royer**
-
-### Audio
-
-- Audio files can be found in the audio folder:
-    - In game music [here](/www/assets/audio/bg-music-1.mp3)
-    - Button click [here](/www/assets/audio/button_click.ogg)
-    - Jump sound [here](/www/assets/audio/jump.wav)
-    - Enemy damage [here](/www/assets/audio/enemy_damage.wav)
-    - Player damage [here](/www/assets/audio/player_damage.wav)
-    - Main background music [here](/www/assets/audio/main-bg-music.mp3)
-
-## User Stories:
-
-### The User
+## User Stories
 
 - What are the goals for a first-time visitor?
     - Quickly understand that this is a game and how to start it
@@ -180,10 +132,7 @@ The purpose of this site is to create a simple-to-play game that requires an und
 The features have been laid out previously. The flow of the website is simple and should be intuitive for mostly anyone.
 A start menu that you click and then you're thrown to the action immediately.
 
-
-## Surface
-
-### Design choices
+## Design choices
 
 - Overview: The aim is to provide easy-controls that most gamers are used to on computers.
     - WASD movement
@@ -192,11 +141,118 @@ A start menu that you click and then you're thrown to the action immediately.
 - Loss/Win should be clear to understand and should have text that explains what happened.
 - Information should not be detailed but fast to read and understand, and straight to the point.
 
-### Languages Used
+## Technologies used
 
-* Python 99.5%
-* Html 0.5%
-* Markdown language for README.md file
+### Languages
+
+* JavaScript
+
+### Frameworks
+
+* kaboom.js
+
+## Testing
+
+### Manual testing
+
+- VS Code workspace was used to test functionality for game
+- Before deployment testing with a large number of different inputs. Letters, characters, lengths, reverse, capital, lowercase.
+
+### Browser testing
+
+- Test on Firefox, Edge, Chrome, and Safari
+- General testing on the laptop of each team member each using Chrome.
+- Testing with different screen sizes
+
+## Bugs 
+
+### During Testing
+
+- (***Ladder climb***) - when reaching top of ladder player would stutter to reach top
+- (***Floor fall***) - For some reason characer would fall through fall in a certain location of map but wouldn't always happen
+
+### Unfixed Bugs
+- (***Jump on crouch***) - while crouched user can still jump in crouch animation
+- (***Floor fall***) - For some reason characer would fall through fall in a certain location of map but wouldn't always happen
+- Sometimes upon dying or constant refreshes character and enemies will spawn invinsible
+
+## Deployment
+
+You can fork the repository by following these steps:
+
+1. Go to the repository on GitHub  
+2. Click on the "Fork" button in the upper right hand corner
+
+You can clone the repository by following these steps:
+
+1. Go to the repository on GitHub
+2. Locate the "Code" button above the list of files and click it  
+3. Select if you prefer to clone using HTTPS, SSH, or Github CLI and click the "copy" button to copy the URL to your clipboard
+4. Open Git Bash
+5. Change the current working directory to the one where you want the cloned directory
+6. Type git clone and paste the URL from the clipboard ($ git clone <https://github.com/YOUR-USERNAME/YOUR-REPOSITORY>)  
+7. Press Enter to create your local clone.
+
+### Local deployment
+
+1. Follow the clone steps below and go to step 2
+2. Run the following command to install all required packages
+
+```
+npm install
+```
+5. Enter the following command to start up the project locally:
+```
+npm run dev
+```
+6. The game can now be accessed locally under [127.0.0.1:8000](https://127.0.0.1:8000)
+
+### Build
+1. Follow the clone steps below and go to step 2
+2. Run the following command to install all required packages
+
+```
+npm install
+```
+5. Enter the following command to create a build:
+```
+npm run build
+```
+6. Your final build is saved into the folder "www"
+
+
+### Text content
+
+Text content was a collaboration between all team members on our constant ***SLACK***  24/7 calls
+
+### Daily logs
+
+In the ***calls*** folder all daily conversations for the project were logged in.
+- [20231608-Call](/docs/calls/20231608.md)
+- [20231708-Call](/docs/calls/20231708.md)
+- [20231808-Call](/docs/calls/20231808.md)
+- [20231908-Call](/docs/calls/20231908.md)
+- [20232008-Call](/docs/calls/20232008.md)
+
+### Design
+
+- Map design were mostly assets thanks to:
+    - [Warped City](https://ansimuz.itch.io/warped-city "Warped City")
+
+- Main character was also a design from the Warped City assets
+- Sprites done by **Abhilash** and **Robin**
+- Map design done by **Sean** and **Royer**
+
+### Audio
+
+- Audio files can be found in the audio folder:
+    - In game music [here](/www/assets/audio/bg-music-1.mp3)
+    - Button click [here](/www/assets/audio/button_click.ogg)
+    - Jump sound [here](/www/assets/audio/jump.wav)
+    - Enemy damage [here](/www/assets/audio/enemy_damage.wav)
+    - Player damage [here](/www/assets/audio/player_damage.wav)
+    - Main background music [here](/www/assets/audio/main-bg-music.mp3)
+
 
 ## Credits
 
@@ -207,4 +263,9 @@ A start menu that you click and then you're thrown to the action immediately.
     - **Abhilash** for creating those amazing sprites and always being the lurky in the 24/7 calls
 
 - For those that could not be there until the end:
-    - **Dayna** for being super cheerful during all the chaos
+    - **Dayna** for being super cheerful during all the chaos and creating nice characters.
+
+## License
+
+This project is published under the MIT license.  
+[License](/LICENSE.txt)
