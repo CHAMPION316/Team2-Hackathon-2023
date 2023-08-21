@@ -234,14 +234,9 @@ export function setupPlayer(level) {
         if(player.pos.sub(mousePos()).unit().x < 0.0) {
             player.flipX = false;
         }
-        else if(player.pos.sub(enemy.pos).unit().x > 0.0) {
+        else if(player.pos.sub(mousePos()).unit().x > 0.0) {
             player.flipX = true;
         }
-        console.log(mousePos())
-        console.log("Mouse Position:", mousePos());
-        console.log("Player Position:", player.pos);
-        console.log(angle);
-        console.log(toPlayerAngle);
         //Check if the angle is not to steep
         if(0.4 <= toPlayerAngle.x || toPlayerAngle.x <= -0.4) {
             //Spawn bullet
