@@ -1,7 +1,9 @@
-//The main menu
 import addButton from "../button";
 import displaySoundSettings from "../ui/sound_settings";
 
+/**
+ * Renders the win screen
+ */
 function winScene() {
 	setBackground(0,0,60)
 
@@ -11,6 +13,7 @@ function winScene() {
 
 	loadFont("Unscii", "assets/fonts/unscii-16.ttf")
 
+    // Create layered background
 	const backgroundLayerBottom = add([]);
 	const backgroundLayerMiddle = add([]);
 	const backgroundLayerTop = add([]);
@@ -39,6 +42,7 @@ function winScene() {
 		])
 	}
 
+    // Add text and buttons
     add([
 		text("You win!", {
 			align: "center",

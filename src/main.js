@@ -11,20 +11,17 @@ import winScene from './scene/win';
 
 
 
+// Plays background music once the player has clicked once
 loadSound("bg-music", "/assets/audio/bg-music-1.mp3")
-
-play("bg-music", {
+export const bgMusic = play("bg-music", {
     volume: volume(),
     loop: true
 })
 
+// Loads one level
 scene('level1', () => {
-    
 	setGravity(640 * SCALE);
 
-    
-
-	
 	camScale(CAMERA_SCALE, CAMERA_SCALE);
 	const level = level1.loadLevel();
 	const player = setupPlayer(level);
@@ -34,20 +31,20 @@ scene('level1', () => {
     displayUi(player);
 });
 
-
+// Loads the main scene
 scene('main', () => {
 	mainScene();
 });
 
-scene('gameover', () => {
 
+// Loads the gameover screen
+scene('gameover', () => {
 	gameover();
 })
 
+// Loads the win screen
 scene('win', () => {
     winScene();
 })
 
 go('main');
-
-// TEST
