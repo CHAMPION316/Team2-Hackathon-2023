@@ -96,8 +96,6 @@ export function setupGreenGuy(level) {
         function attackLoop() {
             if (!player.exists()) return
 
-            
-
             const angle = player.pos.angle(enemy.pos);
             const toPlayerAngle = player.pos.sub(enemy.pos).unit();
 

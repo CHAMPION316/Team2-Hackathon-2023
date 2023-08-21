@@ -1,6 +1,7 @@
 
 import { SCALE, CAMERA_SCALE } from './game';
 import { setupPlayer } from './player'
+import { setupGoal } from './goal';
 import * as level1 from './levels/level-1'
 import setupGreenGuy from './enemy';
 import mainScene from './scene/menu'
@@ -14,6 +15,7 @@ scene('level1', () => {
 	const level = level1.loadLevel();
 	const player = setupPlayer(level);
 	setupGreenGuy(level);
+	setupGoal(level);
 
     displayUi(player);
 });
