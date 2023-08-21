@@ -8,6 +8,8 @@
 function addButton(textContent, position, clickFunction) {
     loadFont("Unscii", "assets/fonts/unscii-16.ttf")
 
+    loadSound("button-click", "/assets/audio/button_click.ogg")
+
     // Button object
     const btn = add([
         rect(240, 80, { radius: 5 }),
@@ -47,7 +49,10 @@ function addButton(textContent, position, clickFunction) {
     })
     
     // Execute given function
-    btn.onClick(clickFunction)
+    btn.onClick(() => {
+        play("button-click");
+        clickFunction();
+    })
 
     return btn
 }

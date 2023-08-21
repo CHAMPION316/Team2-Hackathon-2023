@@ -52,7 +52,7 @@ const PLATFORM_LAYER = [
     'O                                 ¯                                                                                        ≡ O                                                                                                   O',
     'O                             <=======>                                                                                    ≡ O                                                                                                   O',
     'O                                                                                                                          ≡ O                                                                                                   O',
-    'O                                                                                                                          ≡ O                                                                                                   o',
+    'O                                                                                                                          ≡ O                                                                                                   O',
     'O                                                                                                                          ≡ O                                                                                                   O',
     '_________________________________________________________________________________________________________________________________________________________________________________________________________________________________ '
 ];
@@ -86,10 +86,10 @@ const ENTITY_LAYER = [
     '                                                                                                                                                                                                                                  ',
     '    P                                                                                                                                                                                                                             ',
     '                                                                                                                                                                                                                                  ',
-    '                                                                                           G    G   G   G                                                                                                                         ',
-    '                                                                                                                                                                                                                                  ',
-    '                                                                                                                                                                                                                                  ',
-    '                                                                                                                                                                                                                                  ',
+    '                      G                                                                    G    G   G   G                                                                                                                         ',
+    '                                                                                                                                                                                                                              @@@ ',
+    '                                                                                                                                                                                                                              @@@ ',
+    '                                                                                                                                                                                                                              @@@ ',
     '                                                                                                                                                                                                                                  '
 ];
 
@@ -105,10 +105,11 @@ export function loadLevel() {
 
     add([
         sprite('skyline', {tiled: true, width: levelWidth}),
-        scale(skyScale),
+        scale(3),
         anchor('center'),
     ]);
 
+    
     // background buildings
     addLevel(BUILDINGS_LAYER, {
         tileWidth: 16 * SCALE,
