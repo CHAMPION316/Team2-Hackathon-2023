@@ -7,8 +7,6 @@ import mainScene from './scene/menu'
 import displayUi from './ui/ui';
 import gameover from './scene/gameover';
 
-loadRoot('https://seanyoung247.github.io/Team2-Hackathon-2023/');
-
 scene('level1', () => {
 	setGravity(640 * SCALE);
 	
