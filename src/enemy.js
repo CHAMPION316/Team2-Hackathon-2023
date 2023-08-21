@@ -33,10 +33,10 @@ export function setupGreenGuy(level) {
     const ENEMY_SPEED = 240;
     const IDLE_SPEED = 180;
 
-    const ENEMY_ATTACK_DISTANCE = 500;
+    const ENEMY_ATTACK_DISTANCE = 200;
     //In ms  
     const ENEMY_ATTACK_INTERVAL = 1000;
-    const ENEMY_ATTACK_BULLET_SPEED = 800;
+    const ENEMY_ATTACK_BULLET_SPEED = 400;
 
     const player = level.get("player")[0];
     const enemies = level.get('green-guy');
@@ -74,7 +74,16 @@ export function setupGreenGuy(level) {
         })
 
 
+        enemy.on("hurt", () => {
+            enemy.color = RED;
+            wait(0.1, () => {
+                enemy.color = "";
+            })
+        })
+
+
         enemy.on("death", () => {
+            clearInterval(attackLoopInterval);
             destroy(enemy)
         })
 
@@ -86,6 +95,8 @@ export function setupGreenGuy(level) {
          */
         function attackLoop() {
             if (!player.exists()) return
+
+            
 
             const angle = player.pos.angle(enemy.pos);
             const toPlayerAngle = player.pos.sub(enemy.pos).unit();
@@ -104,7 +115,7 @@ export function setupGreenGuy(level) {
                 const bullet = add([
                     sprite("bullet"),
                     // Flip bullet depending on the shooting direction 
-                    enemy.flipX ? pos(enemy.pos.x+50, enemy.pos.y-60) : pos(enemy.pos.x-50, enemy.pos.y-60),
+                    enemy.flipX ? pos(enemy.pos.x, enemy.pos.y-20) : pos(enemy.pos.x, enemy.pos.y-20),
                     rgb(),
                     scale(SCALE/1.5),
                     rotate(angle),
