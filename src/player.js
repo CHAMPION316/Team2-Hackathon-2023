@@ -122,7 +122,9 @@ export function setupPlayer(level) {
         if(player.state != "hurt") {
             player.move(-SPEED, 0);
             player.flipX = true;
-            if (player.isGrounded() && player.curAnim() !== "run") {
+            if (player.isGrounded() &&
+                (player.curAnim() !== "run" && 
+                player.curAnim() !== "run-shoot")) {
                 player.play("run");
             }
         }
@@ -134,7 +136,9 @@ export function setupPlayer(level) {
         if(player.state != "hurt") {
             player.move(SPEED, 0);
             player.flipX = false;
-            if (player.isGrounded() && player.curAnim() !== "run") {
+            if (player.isGrounded() && 
+                (player.curAnim() !== "run" && 
+                player.curAnim() !== "run-shoot")) {
                 player.play("run");
             }
         }
@@ -226,28 +230,56 @@ export function setupPlayer(level) {
     })
 
     onMousePress(() => {
-        
-        const angle = toWorld(mousePos()).angle(vec2(player.pos.x, player.pos.y-30));
-        const toPlayerAngle = toWorld(mousePos()).sub(player.pos).unit();
+        const bulletPos = vec2(player.pos);
+        const offset = vec2(15,41);
 
         //Determine player position and look to the player position during the attack
-        if(player.pos.sub(mousePos()).unit().x < 0.0) {
+        if(bulletPos.sub(toWorld(mousePos())).unit().x < 0.0) {
             player.flipX = false;
         }
-        else if(player.pos.sub(mousePos()).unit().x > 0.0) {
+        else if(bulletPos.sub(toWorld(mousePos())).unit().x > 0.0) {
             player.flipX = true;
         }
-        //Check if the angle is not to steep
+
+        switch (player.curAnim()) {
+            case 'run':
+                const frame = player.frame;
+                player.play('run-shoot');
+                player.frame = frame;
+            case 'run-shoot':
+                offset.y = 38;
+                offset.x = 25;
+                break;
+            case 'idle':
+                player.play('shoot');
+                break;
+            case 'crouch':
+                offset.y = 24;
+                break;
+        }
+        if (player.flipX) {
+            bulletPos.x -= offset.x;
+            bulletPos.y -= offset.y;
+        } else {
+            bulletPos.x += offset.x;
+            bulletPos.y -= offset.y;
+        }
+
+        const angle = toWorld(mousePos()).angle(vec2(bulletPos.x, bulletPos.y));
+        const toPlayerAngle = toWorld(mousePos()).sub(bulletPos).unit();
+
+        //Check if the angle is not too steep
         if(0.4 <= toPlayerAngle.x || toPlayerAngle.x <= -0.4) {
             //Spawn bullet
             const bullet = add([
                 sprite("bullet"),
                 // Flip bullet depending on the shooting direction 
-                pos(vec2(player.pos.x, player.pos.y-30)),
+                pos(bulletPos),
                 rgb(),
                 scale(SCALE/1.5),
                 rotate(angle),
                 state("fly", ["fly"]),
+                anchor('center'),
                 area(),
                 "friendly-bullet",
                 move(angle, 800),

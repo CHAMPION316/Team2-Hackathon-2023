@@ -1,5 +1,5 @@
 
-import { CAMERA_SCALE, SCALE } from '../game';
+import { SCALE } from '../game';
 import { solidTiles, backgroundTiles, backgroundBuildings, entities, props } from '../sprite-atlas';
 
 const BUILDINGS_LAYER = [
