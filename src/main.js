@@ -14,7 +14,6 @@ import winScene from './scene/win';
 // Plays background music once the player has clicked once
 loadSound("bg-music", "/assets/audio/bg-music-1.mp3")
 export const bgMusic = play("bg-music", {
-    volume: volume(),
     loop: true
 })
 
