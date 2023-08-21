@@ -1,7 +1,8 @@
 {
-	"name": "thegame",
+	"name": "code_nexus",
 	"scripts": {
 		"build": "esbuild --bundle src/main.js --outfile=www/main.js --minify",
+		"deploy": "git push origin :gh-pages && git subtree push --prefix www origin gh-pages",
 		"dev": "esbuild --bundle src/main.js --outfile=www/main.js --servedir=www",
 		"bundle": "npm run build && mkdir -p dist && zip -r dist/game.zip www -x \"**/.DS_Store\""
 	},

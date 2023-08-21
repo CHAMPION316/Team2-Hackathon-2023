@@ -7,15 +7,6 @@ import mainScene from './scene/menu'
 import displayUi from './ui/ui';
 import gameover from './scene/gameover';
 
-
-loadRoot('/Team2-Hackathon-2023/');
-
-if (window.location.host.includes('github.io')) {
-	console.log('on github');
-} else {
-	console.log('not github');
-}
-
 scene('level1', () => {
 	setGravity(640 * SCALE);
 	
