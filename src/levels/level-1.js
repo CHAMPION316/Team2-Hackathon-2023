@@ -109,6 +109,7 @@ export function loadLevel() {
         anchor('center'),
     ]);
 
+    
     // background buildings
     addLevel(BUILDINGS_LAYER, {
         tileWidth: 16 * SCALE,

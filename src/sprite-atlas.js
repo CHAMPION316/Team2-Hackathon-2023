@@ -346,3 +346,19 @@ export const solidTiles = {
         'ground'
     ] 
 };
+
+// variable for background
+export const backgroundBuildings = {
+    // far away buildings
+    '≡': () => [
+        sprite("buildings-bg"),
+        scale(SCALE),
+        area({
+            scale:vec2(0.1,1),
+            offset:vec2(16*4,-10)
+        }),
+        body({isStatic: true}),
+        tile({ isObstacle: false }),
+        'buildings'
+    ]
+};

@@ -15,7 +15,7 @@ export function setupGoal(level) {
 
     for (const goal of goals) {
         goal.onCollide('player', ()=>{
-            console.log('reached the goal');
+            go("win")
         });
     }
 }

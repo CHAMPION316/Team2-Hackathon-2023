@@ -12,6 +12,10 @@ loadSprite("green-guy", "assets/sprites/green-guy.png", {
 });
 loadSprite("bullet", "assets/props/bullets/shot-preview.gif");
 
+loadSound("enemy-damage", "/assets/audio/enemy_damage.wav")
+loadSound("enemy-death", "/assets/audio/enemy_death.ogg")
+loadSound("enemy-shoot", "/assets/audio/shoot_enemy.wav")
+
 
 export function greenGuy() {
     return [
@@ -75,6 +79,7 @@ export function setupGreenGuy(level) {
 
 
         enemy.on("hurt", () => {
+            play("enemy-damage");
             enemy.color = RED;
             wait(0.1, () => {
                 enemy.color = "";
@@ -83,6 +88,7 @@ export function setupGreenGuy(level) {
 
 
         enemy.on("death", () => {
+            play("enemy-death");
             clearInterval(attackLoopInterval);
             destroy(enemy)
         })
@@ -109,6 +115,7 @@ export function setupGreenGuy(level) {
 
             //Check if the angle is not to steep
             if(0.4 <= toPlayerAngle.x || toPlayerAngle.x <= -0.4) {
+                play("enemy-shoot");
                 //Spawn bullet
                 const bullet = add([
                     sprite("bullet"),

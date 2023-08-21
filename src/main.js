@@ -9,9 +9,20 @@ import displayUi from './ui/ui';
 import gameover from './scene/gameover';
 import winScene from './scene/win';
 
+
+
+loadSound("bg-music", "/assets/audio/bg-music-1.mp3")
+
+play("bg-music", {
+    volume: volume(),
+    loop: true
+})
+
 scene('level1', () => {
+    
 	setGravity(640 * SCALE);
 
+    
 
 	
 	camScale(CAMERA_SCALE, CAMERA_SCALE);
@@ -29,6 +40,7 @@ scene('main', () => {
 });
 
 scene('gameover', () => {
+
 	gameover();
 })
 

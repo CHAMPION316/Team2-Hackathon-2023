@@ -55,6 +55,13 @@ loadSprite("player", "assets/sprites/player.png", {
 });
 loadSprite("bullet", "assets/props/bullets/shot-preview.gif");
 
+
+loadSound("jump", "/assets/audio/jump.wav")
+loadSound("player-damage", "/assets/audio/player_damage.wav")
+loadSound("player-death", "/assets/audio/player_death.wav")
+loadSound("player-shoot", "/assets/audio/shoot_player.wav")
+
+
 const SPEED = 120 * SCALE;
 const JUMP_FORCE = 320 * SCALE;
 
@@ -97,6 +104,7 @@ export function setupPlayer(level) {
     onKeyPress("space", () => {
         if (player.isGrounded() && player.curAnim() !== "climb" && player.state != "hurt") {
             player.jump(JUMP_FORCE)
+            play("jump");
             player.play("jump")
         }
     });
@@ -212,6 +220,7 @@ export function setupPlayer(level) {
 
     player.onStateEnter("hurt", () => {
         if(!invincible) {
+            play("player-damage")
             player.hurt(1);
         }
         
@@ -270,6 +279,7 @@ export function setupPlayer(level) {
 
         //Check if the angle is not too steep
         if(0.4 <= toPlayerAngle.x || toPlayerAngle.x <= -0.4) {
+            play("player-shoot");
             //Spawn bullet
             const bullet = add([
                 sprite("bullet"),
@@ -295,6 +305,7 @@ export function setupPlayer(level) {
     });
 
     player.on("death", () => {
+        play("player-death")
         destroy(player)
         go("gameover")
     })
